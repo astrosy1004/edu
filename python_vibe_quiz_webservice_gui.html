@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>파이썬 바이브 코딩 탐험대 퀴즈</title>
+  <style>
+    :root{
+      --bg1:#8fd3f4; --bg2:#84fab0; --ink:#25324b; --card:#ffffffee; --point:#6c5ce7; --point2:#00b894; --warn:#ff7675; --sun:#fdcb6e;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic',sans-serif;color:var(--ink);background:linear-gradient(135deg,var(--bg1),var(--bg2));min-height:100vh;overflow-x:hidden}
+    .cloud{position:fixed;background:#fff;border-radius:50px;opacity:.65;filter:blur(.2px);animation:float 18s infinite ease-in-out;z-index:0}
+    .cloud:before,.cloud:after{content:"";position:absolute;background:#fff;border-radius:50%}.cloud:before{width:60px;height:60px;left:20px;top:-30px}.cloud:after{width:90px;height:90px;left:75px;top:-45px}.c1{width:170px;height:55px;left:6%;top:8%}.c2{width:210px;height:60px;right:9%;top:18%;animation-delay:-7s}.c3{width:150px;height:45px;left:60%;bottom:10%;animation-delay:-12s}@keyframes float{50%{transform:translateY(22px) translateX(18px)}}
+    main{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:28px 16px 60px}.hero{display:grid;grid-template-columns:1.3fr .7fr;gap:18px;align-items:center}.panel{background:var(--card);border:3px solid #fff;border-radius:28px;box-shadow:0 18px 50px rgba(45,52,54,.16);padding:24px}.title{font-size:clamp(30px,5vw,54px);line-height:1.08;margin:0;font-weight:900}.badge{display:inline-flex;gap:8px;align-items:center;background:#fff6d6;border:2px solid #ffeaa7;border-radius:999px;padding:8px 14px;font-weight:800;margin-bottom:10px}.dino{font-size:110px;text-align:center;animation:bounce 1.3s infinite}.mini{font-size:18px;line-height:1.65}.row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}.field label{font-weight:800;font-size:14px}.field input,.field select,.field textarea{width:100%;border:2px solid #dfe6e9;border-radius:16px;padding:13px 14px;font-size:16px;background:#fff;outline:none}.field textarea{min-height:100px;resize:vertical}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--point);box-shadow:0 0 0 4px #6c5ce722}.btn{border:0;border-radius:18px;padding:15px 18px;font-weight:900;font-size:17px;cursor:pointer;box-shadow:0 8px 0 rgba(0,0,0,.12);transition:.15s;white-space:nowrap}.btn:hover{transform:translateY(-2px)}.btn:active{transform:translateY(5px);box-shadow:0 3px 0 rgba(0,0,0,.12)}.primary{background:var(--point);color:white}.green{background:var(--point2);color:white}.yellow{background:var(--sun);color:#3d2b00}.red{background:var(--warn);color:white}.ghost{background:#fff;color:var(--ink);border:2px solid #dfe6e9}.quiz{display:none;margin-top:18px}.topbar{position:sticky;top:10px;z-index:3;display:flex;gap:10px;align-items:center;justify-content:space-between;margin:14px 0}.progress{flex:1;background:#ffffff99;border:3px solid #fff;height:28px;border-radius:999px;overflow:hidden}.bar{height:100%;width:0;background:linear-gradient(90deg,#6c5ce7,#00cec9,#00b894);border-radius:999px;transition:.35s}.pill{background:#fff;border-radius:999px;padding:8px 13px;font-weight:900}.qcard{display:none;background:#fff;border-radius:28px;padding:24px;margin:16px 0;box-shadow:0 12px 35px rgba(45,52,54,.14);border:3px solid #fff}.qcard.active{display:block;animation:pop .25s}.qnum{display:inline-block;background:#e8e4ff;color:#4b3eb1;border-radius:999px;padding:8px 13px;font-weight:900}.qtitle{font-size:24px;font-weight:900;margin:16px 0 14px;line-height:1.35}.options{display:grid;gap:12px}.opt{display:flex;align-items:center;gap:12px;border:3px solid #edf2f7;border-radius:18px;padding:15px;background:#f9fbff;cursor:pointer;font-weight:800}.opt:hover{border-color:#a29bfe;background:#f2f0ff}.opt input{transform:scale(1.3)}.emoji{font-size:28px}.nav{display:flex;gap:10px;justify-content:space-between;margin-top:18px}.result{display:none;margin-top:18px}.scorebox{text-align:center}.score{font-size:64px;font-weight:1000;color:var(--point);margin:8px}.stars{font-size:38px}.teacher{margin-top:18px}.small{font-size:13px;color:#636e72;line-height:1.5}.code{font-family:ui-monospace,Consolas,monospace;background:#2d3436;color:#dfe6e9;border-radius:16px;padding:14px;overflow:auto;font-size:13px}.hidden{display:none!important}table{width:100%;border-collapse:collapse;background:#fff;border-radius:14px;overflow:hidden}th,td{padding:10px;border-bottom:1px solid #edf2f7;text-align:left;font-size:14px}th{background:#f1f2f6}.chip{display:inline-block;padding:5px 8px;border-radius:999px;background:#edf2f7;font-weight:800}.confetti{position:fixed;top:-20px;font-size:22px;animation:fall 2.7s linear forwards;z-index:20}@keyframes bounce{50%{transform:translateY(-10px)}}@keyframes pop{from{transform:scale(.96);opacity:.4}to{transform:scale(1);opacity:1}}@keyframes fall{to{transform:translateY(105vh) rotate(720deg);opacity:.3}}@media(max-width:760px){.hero{grid-template-columns:1fr}.row{grid-template-columns:1fr}.dino{font-size:80px}.topbar{flex-wrap:wrap}.nav{flex-direction:column}.btn{width:100%}}
+  </style>
+</head>
+<body>
+  <div class="cloud c1"></div><div class="cloud c2"></div><div class="cloud c3"></div>
+  <main>
+    <section class="hero">
+      <div class="panel">
+        <div class="badge">🐍 Python · 🤖 Vibe Coding · 🌏 SDGs</div>
+        <h1 class="title">파이썬 바이브 코딩<br>탐험대 퀴즈!</h1>
+        <p class="mini">공룡게임, 터틀 그림, SDGs 아이디어까지! 내가 배운 것을 확인하고, 바이브 코딩을 해 본 느낌도 남겨 봅시다.</p>
+        <div class="row">
+          <div class="field"><label>이름</label><input id="studentName" placeholder="예: 김코딩" /></div>
+          <div class="field"><label>학년/반</label><input id="studentClass" placeholder="예: 5-2" /></div>
+          <div class="field"><label>나의 코딩 캐릭터</label><select id="avatar"><option>🐍 파이썬 마법사</option><option>🦖 공룡게임 용사</option><option>🐢 터틀 화가</option><option>🌏 SDGs 해결사</option><option>🤖 AI 프롬프트 연구원</option></select></div>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px">
+          <button class="btn primary" onclick="startQuiz()">탐험 시작하기 🚀</button>
+          <button class="btn ghost" onclick="toggleTeacher()">교사용 설정/결과 보기 🔐</button>
+        </div>
+      </div>
+      <div class="panel scorebox"><div class="dino">🦖</div><b>미션</b><p class="mini">15개 퀴즈 + 3개 느낌 문항을 완료하면 나만의 결과 카드가 나옵니다.</p></div>
+    </section>
+
+    <section id="teacherPanel" class="panel teacher hidden">
+      <h2>교사용 웹서비스 수집 설정</h2>
+      <p class="small">Google Apps Script 웹앱 URL을 아래 칸에 붙여 넣으면 학생 제출 결과가 Google Sheet로 전송됩니다. URL은 이 브라우저에만 저장됩니다.</p>
+      <div class="field"><label>웹앱 URL</label><input id="webAppUrl" placeholder="https://script.google.com/macros/s/....../exec" /></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px"><button class="btn green" onclick="saveWebAppUrl()">URL 저장</button><button class="btn yellow" onclick="downloadCsv()">현재 기기 결과 CSV 다운로드</button><button class="btn ghost" onclick="renderLocalResults()">현재 기기 결과 새로고침</button></div>
+      <details style="margin-top:14px"><summary><b>Google Apps Script 코드 보기</b></summary><pre class="code">function doPost(e) {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('응답') || SpreadsheetApp.getActiveSpreadsheet().insertSheet('응답');
+  const data = JSON.parse(e.postData.contents);
+  if (sheet.getLastRow() === 0) {
+    sheet.appendRow(['제출시간','이름','학년반','캐릭터','점수','총점','정답률','느낀점','어려웠던점','다음에 만들고 싶은 것','문항별응답JSON']);
+  }
+  sheet.appendRow([new Date(), data.name, data.className, data.avatar, data.score, data.total, data.percent, data.feeling, data.difficulty, data.nextProject, JSON.stringify(data.answers)]);
+  return ContentService.createTextOutput(JSON.stringify({ok:true})).setMimeType(ContentService.MimeType.JSON);
+}</pre></details>
+      <h3>현재 기기에 저장된 결과</h3><div id="localResults"></div>
+    </section>
+
+    <section id="quiz" class="quiz">
+      <div class="topbar"><div class="pill" id="stepText">1 / 18</div><div class="progress"><div class="bar" id="bar"></div></div><div class="pill" id="coin">💎 0</div></div>
+      <div id="questionWrap"></div>
+    </section>
+
+    <section id="result" class="panel result">
+      <div class="scorebox"><div class="stars" id="stars"></div><h2>탐험 완료!</h2><div class="score" id="scoreText"></div><p class="mini" id="resultMsg"></p><p id="submitState" class="small"></p><button class="btn primary" onclick="location.reload()">처음으로</button> <button class="btn yellow" onclick="copyResult()">결과 복사</button></div>
+      <div id="review"></div>
+    </section>
+  </main>
+<script>
+const questions = [
+ {q:'파이썬을 설치한 뒤 우리가 코드를 쉽게 쓰고 실행해 본 프로그램은 무엇일까요?', a:'Thonny', opts:['Paint','Thonny','PowerPoint','계산기'], icon:'💻'},
+ {q:'print("안녕!") 코드를 실행하면 어떤 일이 일어날까요?', a:'화면에 안녕!이 출력된다', opts:['거북이가 움직인다','화면에 안녕!이 출력된다','컴퓨터가 꺼진다','공룡이 점프한다'], icon:'📢'},
+ {q:'터틀 그래픽에서 거북이를 앞으로 움직이는 명령으로 알맞은 것은?', a:'forward()', opts:['jump()','dance()','forward()','sleep()'], icon:'🐢'},
+ {q:'반복해서 같은 코드를 실행하고 싶을 때 가장 어울리는 것은?', a:'반복문', opts:['반복문','지우개','이어폰','마우스패드'], icon:'🔁'},
+ {q:'공룡게임에서 스페이스바를 누르면 공룡이 해야 할 행동은?', a:'점프하기', opts:['잠자기','점프하기','색칠하기','파일 저장하기'], icon:'🦖'},
+ {q:'바이브 코딩을 할 때 AI에게 가장 잘 말한 예시는?', a:'초등학생이 할 수 있게, 공룡이 장애물을 피하는 게임 코드를 만들어줘', opts:['게임 만들어줘','빨리 해','초등학생이 할 수 있게, 공룡이 장애물을 피하는 게임 코드를 만들어줘','몰라'], icon:'🤖'},
+ {q:'코드에 오류가 났을 때 가장 좋은 태도는?', a:'오류 내용을 보고 하나씩 고쳐 본다', opts:['바로 포기한다','컴퓨터를 혼낸다','오류 내용을 보고 하나씩 고쳐 본다','친구 코드만 그대로 낸다'], icon:'🛠️'},
+ {q:'변수는 어떤 역할을 할까요?', a:'값을 담아 두는 이름표', opts:['간식 상자','값을 담아 두는 이름표','화면 밝기','키보드 종류'], icon:'🏷️'},
+ {q:'if문은 어떤 상황에서 많이 사용할까요?', a:'조건에 따라 다르게 행동할 때', opts:['항상 같은 말만 할 때','조건에 따라 다르게 행동할 때','그림을 저장할 때만','컴퓨터를 충전할 때'], icon:'🚦'},
+ {q:'SDGs 주제로 코딩할 때 좋은 아이디어는?', a:'쓰레기 분리배출을 알려주는 퀴즈 만들기', opts:['친구 놀리기 프로그램','쓰레기 분리배출을 알려주는 퀴즈 만들기','아무 내용 없는 화면','비밀번호 훔치기'], icon:'🌏'},
+ {q:'AI가 만든 코드가 완벽하지 않을 때 우리는 무엇을 해야 할까요?', a:'읽어 보고 내 생각대로 수정한다', opts:['무조건 믿는다','읽어 보고 내 생각대로 수정한다','오류를 숨긴다','저장하지 않는다'], icon:'🔍'},
+ {q:'게임에서 점수(score)가 올라가는 경우로 가장 알맞은 것은?', a:'장애물을 잘 피했을 때', opts:['창을 닫았을 때','장애물을 잘 피했을 때','이름을 지웠을 때','소리를 줄였을 때'], icon:'🏆'},
+ {q:'터틀로 정사각형을 그리려면 주로 어떤 움직임을 반복할까요?', a:'앞으로 가고 90도 돌기', opts:['앞으로 가고 90도 돌기','계속 뒤로만 가기','색만 바꾸기','멈추기만 하기'], icon:'⬛'},
+ {q:'바이브 코딩에서 프롬프트란 무엇에 가까울까요?', a:'AI에게 원하는 것을 설명하는 요청문', opts:['컴퓨터 전원 버튼','AI에게 원하는 것을 설명하는 요청문','마우스 선','게임 배경음악'], icon:'💬'},
+ {q:'이번 수업에서 배운 내용을 가장 잘 설명한 말은?', a:'파이썬 기초를 배우고 AI와 함께 아이디어를 코드로 만들어 보았다', opts:['그림만 감상했다','파이썬 기초를 배우고 AI와 함께 아이디어를 코드로 만들어 보았다','종이접기만 했다','인터넷 검색만 했다'], icon:'✨'}
+];
+const reflections = [
+ {id:'feeling', q:'바이브 코딩을 해 본 느낌을 한 문장 이상으로 적어 봅시다.', icon:'💖', ph:'예: AI와 함께 코딩하니 처음에는 신기했고, 오류를 고치면서 더 재미있었다.'},
+ {id:'difficulty', q:'어려웠던 점이나 다시 배우고 싶은 내용을 적어 봅시다.', icon:'🧩', ph:'예: if문은 조금 헷갈렸지만 게임 조건을 만들 때 필요하다는 것을 알았다.'},
+ {id:'nextProject', q:'다음에 AI와 함께 만들고 싶은 파이썬 작품은 무엇인가요?', icon:'🚀', ph:'예: 환경을 지키는 미니게임, 학교 급식 추천 봇, 나만의 그림판 등'}
+];
+let current=0, answers={}, score=0;
+function el(id){return document.getElementById(id)}
+function startQuiz(){ if(!el('studentName').value.trim()){alert('이름을 먼저 적어 주세요!');return} document.querySelector('.hero').style.display='none'; el('teacherPanel').classList.add('hidden'); el('quiz').style.display='block'; buildQuestions(); showQ(0); }
+function buildQuestions(){ const wrap=el('questionWrap'); wrap.innerHTML=''; questions.forEach((item,i)=>{ const card=document.createElement('div'); card.className='qcard'; card.innerHTML=`<span class="qnum">미션 ${i+1}</span><div class="qtitle"><span class="emoji">${item.icon}</span> ${item.q}</div><div class="options">${shuffle([...item.opts]).map(o=>`<label class="opt"><input type="radio" name="q${i}" value="${escapeHtml(o)}" onchange="answers.q${i}=this.value; updateCoin()"> ${o}</label>`).join('')}</div>${navHtml()}`; wrap.appendChild(card); }); reflections.forEach((r,j)=>{ const idx=questions.length+j; const card=document.createElement('div'); card.className='qcard'; card.innerHTML=`<span class="qnum">생각 나누기 ${j+1}</span><div class="qtitle"><span class="emoji">${r.icon}</span> ${r.q}</div><div class="field"><textarea id="${r.id}" placeholder="${r.ph}" oninput="answers.${r.id}=this.value; updateCoin()"></textarea></div>${navHtml()}`; wrap.appendChild(card); }); }
+function navHtml(){return `<div class="nav"><button class="btn ghost" onclick="prevQ()">⬅ 이전</button><button class="btn primary" onclick="nextQ()">다음 ➡</button></div>`}
+function showQ(n){ const cards=[...document.querySelectorAll('.qcard')]; current=n; cards.forEach((c,i)=>c.classList.toggle('active',i===n)); el('stepText').innerText=`${n+1} / ${cards.length}`; el('bar').style.width=((n+1)/cards.length*100)+'%'; cards[n].querySelector('.nav .ghost').style.visibility=n===0?'hidden':'visible'; cards[n].querySelector('.nav .primary').innerText=n===cards.length-1?'제출하기 🎉':'다음 ➡'; }
+function nextQ(){ const total=questions.length+reflections.length; if(current<questions.length && !answers['q'+current]){alert('답을 하나 골라 주세요!');return} if(current>=questions.length){ const r=reflections[current-questions.length]; if(!el(r.id).value.trim()){alert('생각을 한 문장 이상 적어 주세요!');return} } if(current<total-1) showQ(current+1); else finish(); }
+function prevQ(){ if(current>0) showQ(current-1) }
+function updateCoin(){ const count=Object.keys(answers).filter(k=>answers[k]&&String(answers[k]).trim()).length; el('coin').innerText='💎 '+count; }
+function finish(){ score=0; questions.forEach((q,i)=>{ if(answers['q'+i]===q.a) score++; }); const percent=Math.round(score/questions.length*100); const data={time:new Date().toLocaleString(), name:el('studentName').value.trim(), className:el('studentClass').value.trim(), avatar:el('avatar').value, score,total:questions.length,percent, feeling:el('feeling').value.trim(), difficulty:el('difficulty').value.trim(), nextProject:el('nextProject').value.trim(), answers}; saveLocal(data); showResult(data); submitToWeb(data); }
+function showResult(data){ el('quiz').style.display='none'; el('result').style.display='block'; el('scoreText').innerText=`${data.score} / ${data.total}점`; el('stars').innerText=data.percent>=90?'🌟🌟🌟':data.percent>=70?'🌟🌟':'🌟'; el('resultMsg').innerText=data.percent>=90?'멋져요! 파이썬 탐험대장입니다.':data.percent>=70?'좋아요! 배운 내용을 잘 기억하고 있어요.':'괜찮아요! 틀린 문제를 다시 보면 더 강해집니다.'; popConfetti(); renderReview(data); }
+function renderReview(data){ el('review').innerHTML='<h3>문항별 확인</h3>'+questions.map((q,i)=>`<p><b>${i+1}. ${q.icon} ${q.q}</b><br>내 답: <span class="chip">${answers['q'+i]||'-'}</span> / 정답: <span class="chip">${q.a}</span></p>`).join('')+`<h3>나의 생각</h3><p><b>느낀 점:</b> ${data.feeling}</p><p><b>어려웠던 점:</b> ${data.difficulty}</p><p><b>다음 작품:</b> ${data.nextProject}</p>`; }
+async function submitToWeb(data){ const url=localStorage.getItem('quizWebAppUrl')||''; if(!url){ el('submitState').innerText='웹앱 URL이 없어 현재 기기에만 저장되었습니다.'; return; } try{ await fetch(url,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(data)}); el('submitState').innerText='웹서비스로 제출을 시도했습니다. Google Sheet에서 수집 결과를 확인해 주세요.'; }catch(e){ el('submitState').innerText='웹 제출에 실패했습니다. 현재 기기에는 저장되었습니다.'; } }
+function saveLocal(data){ const arr=JSON.parse(localStorage.getItem('quizResults')||'[]'); arr.push(data); localStorage.setItem('quizResults',JSON.stringify(arr)); }
+function toggleTeacher(){ el('teacherPanel').classList.toggle('hidden'); el('webAppUrl').value=localStorage.getItem('quizWebAppUrl')||''; renderLocalResults(); }
+function saveWebAppUrl(){ localStorage.setItem('quizWebAppUrl',el('webAppUrl').value.trim()); alert('저장되었습니다.'); }
+function renderLocalResults(){ const arr=JSON.parse(localStorage.getItem('quizResults')||'[]'); if(!arr.length){el('localResults').innerHTML='<p class="small">아직 이 기기에 저장된 결과가 없습니다.</p>';return} el('localResults').innerHTML=`<table><thead><tr><th>시간</th><th>이름</th><th>반</th><th>점수</th><th>느낀 점</th><th>다음 작품</th></tr></thead><tbody>${arr.map(r=>`<tr><td>${r.time}</td><td>${r.name}</td><td>${r.className}</td><td>${r.score}/${r.total}</td><td>${escapeHtml(r.feeling)}</td><td>${escapeHtml(r.nextProject)}</td></tr>`).join('')}</tbody></table>`; }
+function downloadCsv(){ const arr=JSON.parse(localStorage.getItem('quizResults')||'[]'); if(!arr.length){alert('저장된 결과가 없습니다.');return} const head=['시간','이름','학년반','캐릭터','점수','총점','정답률','느낀점','어려웠던점','다음작품']; const rows=arr.map(r=>[r.time,r.name,r.className,r.avatar,r.score,r.total,r.percent,r.feeling,r.difficulty,r.nextProject]); const csv=[head,...rows].map(row=>row.map(v=>'"'+String(v??'').replaceAll('"','""')+'"').join(',')).join('\n'); const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='python_vibe_quiz_results.csv'; a.click(); }
+function copyResult(){ navigator.clipboard.writeText(el('review').innerText); alert('결과 내용을 복사했습니다.'); }
+function shuffle(a){ for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]} return a }
+function escapeHtml(s){return String(s).replace(/[&<>'"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[m]))}
+function popConfetti(){ const icons=['🎉','✨','💎','🐍','🦖','🌏','⭐']; for(let i=0;i<50;i++){ const d=document.createElement('div'); d.className='confetti'; d.innerText=icons[Math.floor(Math.random()*icons.length)]; d.style.left=Math.random()*100+'vw'; d.style.animationDelay=Math.random()*1.2+'s'; document.body.appendChild(d); setTimeout(()=>d.remove(),3500); } }
+window.addEventListener('load',()=>{ el('webAppUrl').value=localStorage.getItem('quizWebAppUrl')||''; });
+</script>
+</body>
+</html>
