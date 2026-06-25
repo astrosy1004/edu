@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Raspberry Pi 5 YOLO 필수 설치</title>
+<style>
+body{font-family:Arial,sans-serif;max-width:900px;margin:30px auto;background:#f4f4f4;line-height:1.6}
+h1{color:#1f4e79}
+.step{background:#fff;padding:15px;margin:15px 0;border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,.15)}
+pre{background:#272822;color:#f8f8f2;padding:12px;border-radius:5px;overflow:auto}
+button{background:#1f6feb;color:#fff;border:none;padding:8px 14px;border-radius:5px;cursor:pointer}
+button:hover{background:#1558b0}
+</style>
+<script>
+function copyCode(id){
+ const text=document.getElementById(id).innerText;
+ navigator.clipboard.writeText(text).then(()=>alert("복사되었습니다."));
+}
+</script>
+</head>
+<body>
+<h1>Raspberry Pi 5 + YOLOv8 필수 설치</h1>
+<p>필수 단계만 정리했습니다.</p>
+
+<div class="step">
+<h2>1. 시스템 업데이트</h2>
+<pre id="c1">sudo apt update
+sudo apt upgrade -y</pre>
+<button onclick="copyCode('c1')">복사</button>
+</div>
+
+<div class="step">
+<h2>2. OpenCV 설치</h2>
+<pre id="c2">sudo apt install -y python3-opencv</pre>
+<button onclick="copyCode('c2')">복사</button>
+</div>
+
+<div class="step">
+<h2>3. 프로젝트 폴더 생성</h2>
+<pre id="c3">mkdir ~/IOT
+cd ~/IOT</pre>
+<button onclick="copyCode('c3')">복사</button>
+</div>
+
+<div class="step">
+<h2>4. 가상환경 생성</h2>
+<pre id="c4">python3 -m venv venv --system-site-packages</pre>
+<button onclick="copyCode('c4')">복사</button>
+</div>
+
+<div class="step">
+<h2>5. 가상환경 활성화</h2>
+<pre id="c5">source ~/IOT/venv/bin/activate</pre>
+<button onclick="copyCode('c5')">복사</button>
+</div>
+
+<div class="step">
+<h2>6. pip 업데이트</h2>
+<pre id="c6">pip install --upgrade pip setuptools wheel
+pip cache purge</pre>
+<button onclick="copyCode('c6')">복사</button>
+</div>
+
+<div class="step">
+<h2>7. CPU 전용 PyTorch 설치</h2>
+<pre id="c7">pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu --no-cache-dir</pre>
+<button onclick="copyCode('c7')">복사</button>
+</div>
+
+<div class="step">
+<h2>8. Ultralytics 설치</h2>
+<pre id="c8">pip install ultralytics --no-deps --no-cache-dir</pre>
+<button onclick="copyCode('c8')">복사</button>
+</div>
+
+<div class="step">
+<h2>9. 필수 라이브러리 설치</h2>
+<pre id="c9">pip install numpy scipy matplotlib pandas pillow pyyaml requests psutil tqdm polars ultralytics-thop nvidia-ml-py --no-cache-dir</pre>
+<button onclick="copyCode('c9')">복사</button>
+</div>
+
+<div class="step">
+<h2>10. 설치 확인</h2>
+<pre id="c10">python -c "import torch; print(torch.__version__); print(torch.cuda.is_available())"
+python -c "import torchvision; print(torchvision.__version__)"
+python -c "from ultralytics import YOLO; print('YOLO OK')"</pre>
+<button onclick="copyCode('c10')">복사</button>
+</div>
+
+</body>
+</html>
